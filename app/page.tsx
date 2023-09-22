@@ -4,6 +4,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
+      {/**
       <main className="bg-white min-h-full mt-[100px] p-10">
         <div className="flex flex-row">
           <p className="text-base font-semibold text-indigo-600">404</p>
@@ -25,7 +26,7 @@ export default function Home() {
             </a>
           </div>
         </div>
-      </main>
+      </main> */}
     </>
   );
 }

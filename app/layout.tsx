@@ -1,10 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Head from "next/head";
-import { Inter } from "next/font/google";
-import Navbar from "@/components/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Operax-The Game Library",
@@ -22,7 +20,7 @@ export default function RootLayout({
         <link rel="icon" href="./favicon.ico" sizes="any" />
       </Head>
 
-      <body className={`${inter.className} `}>
+      <body>
         <Navbar />
         <div className="isolate px-6 pt-14 lg:px-8 ">
           <div
