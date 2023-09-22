@@ -22,6 +22,8 @@ const Navbar = () => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
         setScrolling(true);
+      } else if (window.scrollY > 0 && scrolling == false) {
+        setScrolling(true);
       } else {
         setScrolling(false);
       }
@@ -34,18 +36,16 @@ const Navbar = () => {
     };
   }, []);
 
-  const navbarStyle = {
-    backgroundColor: scrolling ? "white" : "transparent",
-  };
-
   return (
-    <header className={`absolute inset-x-0 top-0 z-50 `}>
+    <header
+      className={`relative inset-x-0 top-0 z-10 w-screen flex justify-center `}
+    >
       <nav
-        className={`flex w-full items-center justify-between  lg:px-8
-        aria-label="Global" transition-all duration-300 ${
+        className={`flex w-full items-center lg:px-8 h-[4.5rem]
+        aria-label="Global" transition-all duration-500 ${
           scrolling
-            ? "background_tran fixed rounded-full p-2.5"
-            : "bg-transparent absolute p-6"
+            ? " fixed p-2.5  justify-between lg:justify-center  border-white border-opacity-40 bg-white bg-opacity-80 text-black w-[90%] md:w-[60%] lg:w-[60%] m-auto rounded-full shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] h-[3.5rem]  gap-16  "
+            : "bg-transparent text-white justify-between absolute p-6"
         }
       }   `}
       >
@@ -59,30 +59,44 @@ const Navbar = () => {
               alt="logo_img"
             />
           </Link>
-          <label
-            htmlFor="image"
-            className="text-white font-bold text-xl cursor-pointer "
-          >
+          <label htmlFor="image" className=" font-bold text-xl cursor-pointer ">
             Operax
           </label>
         </div>
 
-        <div className="flex gap-8 lg:flex lg:gap-x-12">
+        {/**Desktop Navilnks & Log In --Should Only be visible in
+         * Desktop $ Tablet
+         */}
+        <div className="hidden lg:flex lg:gap-x-12 md:flex  md:gap-x-4">
           {navLinks.map((link) => (
-            <Link
-              key={link.value}
-              href={link.href}
-              className="text-sm font-semibold leading-6 text-white cursor-pointer "
+            <div
+              className={`${scrolling ? "bg-neutral-300 px-2 rounded-lg" : ""}`}
             >
-              {link.value}
-            </Link>
+              <Link
+                key={link.value}
+                href={link.href}
+                className={`font-semibold leading-6  cursor-pointer ${
+                  scrolling ? "text-base" : "text-sm"
+                }`}
+              >
+                {link.value}
+              </Link>
+            </div>
           ))}
         </div>
-        <div className="lg:flex lg:flex-1 lg:justify-end cursor-pointer">
-          <Link href="#" className="text-sm font-semibold leading-6 text-white">
+        <div
+          className={`lg:flex lg:flex-1 lg:justify-end md:flex cursor-pointer flex `}
+        >
+          <Link
+            href="#"
+            className={`font-semibold leading-6
+          ${scrolling ? "text-base" : "text-sm"} `}
+          >
             Log in <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
+
+        {/**Mobile navlinks */}
       </nav>
     </header>
   );
