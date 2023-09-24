@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
 interface ILink {
@@ -16,6 +16,8 @@ const navLinks: ILink[] = [
 ];
 
 const Navbar = () => {
+  const path = usePathname();
+
   const [scrolling, setScrolling] = useState<boolean>(false);
 
   useEffect(() => {
@@ -41,10 +43,10 @@ const Navbar = () => {
       className={`relative inset-x-0 top-0 z-10 w-screen flex justify-center `}
     >
       <nav
-        className={`flex items-center lg:px-6 h-[4.5rem]
+        className={`flex items-center lg:px-6 h-[4.5rem] mt-0.5
         aria-label="Global" transition-all duration-500 ${
           scrolling
-            ? "fixed mt-0.5 p-2 md:px-4 justify-between  lg:justify-center  border-white border-opacity-40 bg-white bg-opacity-40 text-black w-[95%] sm:w-[90%] md:w-[90%] lg:w-[80%] m-auto rounded-xl shadow-xl shadow-black/[0.05] backdrop-blur-[0.5rem] h-[3.5rem] gap-16  "
+            ? "fixed p-2 md:px-4 justify-between  lg:justify-center  border-white/40  bg-white/10  text-white w-[95%] sm:w-[90%] md:w-[90%] lg:w-[80%] m-auto rounded-b-xl shadow-xl shadow-black/[0.05] backdrop-blur-[0.5rem] h-[3.5rem] gap-16  "
             : "bg-transparent text-white justify-between absolute p-6 w-full"
         }
       }   `}
@@ -70,7 +72,11 @@ const Navbar = () => {
         <div className="hidden lg:flex lg:gap-x-4 md:flex md:gap-x-4">
           {navLinks.map((link) => (
             <div
-              className={`${scrolling ? "bg-neutral-300 px-2 rounded-lg" : ""}`}
+              className={`${
+                path === link.href
+                  ? "bg-white/10 px-2 flex items-center rounded-lg"
+                  : ""
+              }`}
             >
               <Link
                 key={link.value}
