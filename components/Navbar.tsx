@@ -52,7 +52,10 @@ const Navbar = () => {
       }   `}
       >
         <div className="flex lg:flex-1 flex-row items-center cursor-pointer gap-2">
-          <Link href="/" className="-m-1.5 p-1.5">
+          <Link
+            href="/"
+            className="flex flex-row items-center justify-between gap-1 -m-1.5 p-1.5"
+          >
             <span className="sr-only">Operax</span>
             <img
               id="image"
@@ -60,10 +63,13 @@ const Navbar = () => {
               src="logo.png"
               alt="logo_img"
             />
+            <label
+              htmlFor="image"
+              className=" font-bold text-xl cursor-pointer "
+            >
+              Operax
+            </label>
           </Link>
-          <label htmlFor="image" className=" font-bold text-xl cursor-pointer ">
-            Operax
-          </label>
         </div>
 
         {/**Desktop Navilnks & Log In --Should Only be visible in
@@ -73,7 +79,7 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <div
               className={`${
-                path === link.href
+                path.includes(link.href)
                   ? "bg-white/10 px-2 flex items-center rounded-lg"
                   : ""
               }`}
