@@ -5,7 +5,7 @@ import Image from "next/image";
 const Game = () => {
   return (
     <>
-      <main className=" flex flex-col flex-1 lg:flex-none my-4 justify-between h-[350px] md:h-[350px] lg:h-[350px] w-[320px] bg-white bg-opacity-10 shadow-2xl shadow-white/[0.05] backdrop-blur-[0.5rem] px-2 py-2 rounded-md items-center ">
+      <main className="flex flex-col flex-1 lg:flex-none my-4 justify-between h-[350px] md:h-[350px] lg:h-[350px] w-[320px] min-w-[270px] bg-white bg-opacity-10 shadow-lg shadow-white/[0.1] backdrop-blur-[0.5rem] px-2 py-2 rounded-md items-center ">
         <div className="py-2 h-[75%] flex justify-center items-center">
           <Image
             alt="Card background "
