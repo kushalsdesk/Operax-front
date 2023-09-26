@@ -19,7 +19,12 @@ const Game = () => {
           <section className="pb-0 pt-2 px-4 flex-col items-start">
             <h4 className="font-bold text-large">Assassin's Creed Syndicate</h4>
             <h6 className="text-default-500">Action-Adventure</h6>
-            <p className="text-tiny uppercase mt-[0.3rem] font-bold">Ubisoft</p>
+            <div className="flex flex-row justify-between">
+              <p className="text-tiny uppercase mt-[0.3rem] font-bold">
+                Ubisoft
+              </p>
+              <p className="text-tiny uppercase mt-[0.3rem] font-bold">2015</p>
+            </div>
           </section>
         </div>
       </main>
