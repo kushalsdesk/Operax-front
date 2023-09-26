@@ -46,7 +46,7 @@ const Navbar = () => {
         className={`flex items-center lg:px-6 h-[4.5rem] mt-0.5
         aria-label="Global" transition-all duration-500 ${
           scrolling
-            ? "fixed p-2 md:px-4 justify-between  lg:justify-center  border-white/40  bg-white/10  text-white w-[95%] sm:w-[90%] md:w-[90%] lg:w-[80%] m-auto rounded-b-xl shadow-xl shadow-black/[0.05] backdrop-blur-[0.5rem] h-[3.5rem] gap-16  "
+            ? "fixed p-2 md:px-4 justify-between md:justify-evenly  lg:justify-evenly  border-white/40  bg-white/10  text-white w-[95%] sm:w-[90%] md:w-[90%] lg:w-[80%] m-auto rounded-b-xl shadow-xl shadow-black/[0.05] backdrop-blur-[0.5rem] h-[3.5rem] gap-16  "
             : "bg-transparent text-white justify-between absolute p-6 w-full"
         }
       }   `}
@@ -54,18 +54,18 @@ const Navbar = () => {
         <div className="flex lg:flex-1 flex-row items-center cursor-pointer gap-2">
           <Link
             href="/"
-            className="flex flex-row items-center justify-between gap-1 -m-1.5 p-1.5"
+            className="flex flex-row items-center justify-between gap-1 "
           >
-            <span className="sr-only">Operax</span>
+            <span className="sr-only ">Operax</span>
             <img
               id="image"
-              className="h-[50px] w-[50px]"
+              className="h-[50px] w-[50px] z-10"
               src="logo.png"
               alt="logo_img"
             />
             <label
               htmlFor="image"
-              className=" font-bold text-xl cursor-pointer "
+              className=" font-bold text-xl cursor-pointer z-10"
             >
               Operax
             </label>
