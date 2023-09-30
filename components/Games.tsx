@@ -9,7 +9,7 @@ const Games = () => {
   useEffect(() => {
     const getGames = async () => {
       try {
-        const apiUrl = "http://localhost:8080/api/games/";
+        const apiUrl = "https://operax.cyclic.cloud/api/games/";
         const response = await axios.get<IGame[]>(apiUrl);
         setGames(response.data);
       } catch (error) {
