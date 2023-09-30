@@ -65,7 +65,9 @@ const Navbar = () => {
             />
             <label
               htmlFor="image"
-              className=" font-bold text-xl cursor-pointer z-10"
+              className={`${
+                scrolling ? "hidden" : "font-bold text-xl cursor-pointer z-10 "
+              }  `}
             >
               Operax
             </label>
