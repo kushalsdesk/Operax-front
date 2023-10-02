@@ -84,13 +84,16 @@ const Navbar = () => {
 
         <div className="hidden lg:flex lg:gap-x-4 md:flex md:gap-x-4">
           {navLinks.map((link) => (
-            <Link
+            <Button
+              variant="light"
+              size="sm"
+              onClick={() => router.push(link.href)}
               key={link.href}
               href={link.href}
               className={`font-semibold leading-6 mx-2 cursor-pointer md:text-sm `}
             >
               {link.value}
-            </Link>
+            </Button>
           ))}
         </div>
 
