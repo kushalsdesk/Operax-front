@@ -27,9 +27,9 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex flex-wrap flex-row flex-1 justify-center items-center md:justify-evenly lg:justify-evenly md:flex-row lg:flex-row gap-x-2 bg-trasnparent w-full md:w-[90%] lg:w-[95%] mx-auto md:border-white/10 lg:border-white/10 md:border-x-[1px] lg:border-x-[1px] mt-[100px] p-10 ">
+      <main className="flex flex-wrap flex-row flex-1 justify-center items-center md:justify-evenly lg:justify-evenly md:flex-row lg:flex-row gap-x-5 bg-trasnparent w-full md:w-[90%] lg:w-[95%] mx-auto md:border-white/10 lg:border-white/10 md:border-x-[1px] lg:border-x-[1px] mt-[100px] p-10 ">
         {loading
-          ? [...Array(5).keys()].map((i) => <Loader key={i} />)
+          ? [...Array(8).keys()].map((i) => <Loader key={i} />)
           : games.map((game: IGame) => <Game key={game._id} game={game} />)}
       </main>
     </>

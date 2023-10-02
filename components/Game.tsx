@@ -9,7 +9,7 @@ interface Props {
 const Game: React.FC<Props> = ({ game }) => {
   return (
     <>
-      <main className="flex flex-col flex-1  lg:flex-none my-4 justify-between h-[350px] md:h-[350px] lg:min-w-[320px] min-w-[270px] bg-white bg-opacity-10 shadow-lg shadow-white/[0.1] backdrop-blur-[0.5rem] px-2 py-2 rounded-xl items-center hover:underline ">
+      <main className="flex flex-col flex-1  lg:flex-none my-4 justify-between h-[350px] md:h-[350px] lg:min-w-[320px] min-w-[270px] bg-white bg-opacity-10 shadow-lg shadow-white/[0.1] backdrop-blur-[0.5rem] px-2 py-2 rounded-xl items-center">
         <div className="py-1 h-[85%] flex justify-center items-center">
           <Image
             alt="Card background "

@@ -1,10 +1,11 @@
+"use client";
 import React from "react";
 import { Skeleton, Card, Spinner } from "@nextui-org/react";
 
 const Loader = () => {
   return (
     <Card
-      className="flex flex-1 h-[350px] md:h-[350px] lg:h-[350px] min-w-[270px] lg:min-w-[320px] my-4 mx-2  px-2 py-2  space-y-5"
+      className="flex flex-1 h-[350px] md:h-[350px] min-w-[270px] lg:min-w-[320px] lg:max-w-[320px] my-4 mx-2  px-2 py-2  space-y-5"
       radius="md"
     >
       <div className="py-1 h-[65%] flex justify-center items-center">
