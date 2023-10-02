@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Button, button } from "@nextui-org/react";
 
 interface ILink {
   href: string;
@@ -17,6 +19,7 @@ const navLinks: ILink[] = [
 
 const Navbar = () => {
   const path = usePathname();
+  const router = useRouter();
 
   const [scrolling, setScrolling] = useState<boolean>(false);
 
@@ -59,7 +62,7 @@ const Navbar = () => {
             <span className="sr-only ">Operax</span>
             <img
               id="image"
-              className="h-[50px] w-[50px] z-10"
+              className="h-[30px] w-[30px] z-10"
               src="logo.png"
               alt="logo_img"
             />
@@ -74,26 +77,51 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/**Desktop Navilnks & Log In --Should Only be visible in
+        {/**
+         * Desktop Navilnks & Log In --Should Only be visible in
          * Desktop $ Tablet
          */}
+        {/**
+          *
         <div className="hidden lg:flex lg:gap-x-4 md:flex md:gap-x-4">
           {navLinks.map((link) => (
-            <div
-              className={`${
-                path.includes(link.href)
-                  ? "bg-white/10 px-2 flex items-center rounded-lg"
-                  : ""
-              }`}
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`font-semibold leading-6 mx-2 cursor-pointer md:text-sm `}
             >
-              <Link
-                key={link.value}
-                href={link.href}
-                className={`font-semibold leading-6 mx-2  cursor-pointer md:text-sm `}
+              <div
+                className={`${
+                  path == link.href
+                    ? "bg-white/10 px-2 flex items-center rounded-lg"
+                    : ""
+                }`}
               >
                 {link.value}
-              </Link>
-            </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+        */}
+        <div className="hidden lg:flex lg:gap-x-4 md:flex md:gap-x-4">
+          {navLinks.map((link) => (
+            <Button
+              key={link.href}
+              variant="light"
+              size="sm"
+              onClick={() => router.push(link.href)}
+              className={`font-semibold  mx-2 cursor-pointer md:text-sm`}
+            >
+              <div
+                className={`${
+                  path == link.href
+                    ? "bg-white/10 px-2 py-2 flex items-center rounded-lg"
+                    : ""
+                }`}
+              >
+                {link.value}
+              </div>
+            </Button>
           ))}
         </div>
 

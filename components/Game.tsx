@@ -17,6 +17,8 @@ const Game: React.FC<Props> = ({ game }) => {
             src={game.imageUrl}
             width={300}
             height={300}
+            loading="lazy"
+            quality={80}
           />
         </div>
         <div className="py-4 items-start w-full">
