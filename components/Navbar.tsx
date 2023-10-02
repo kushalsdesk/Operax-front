@@ -81,8 +81,7 @@ const Navbar = () => {
          * Desktop Navilnks & Log In --Should Only be visible in
          * Desktop $ Tablet
          */}
-        {/**
-          *
+
         <div className="hidden lg:flex lg:gap-x-4 md:flex md:gap-x-4">
           {navLinks.map((link) => (
             <Link
@@ -90,38 +89,8 @@ const Navbar = () => {
               href={link.href}
               className={`font-semibold leading-6 mx-2 cursor-pointer md:text-sm `}
             >
-              <div
-                className={`${
-                  path == link.href
-                    ? "bg-white/10 px-2 flex items-center rounded-lg"
-                    : ""
-                }`}
-              >
-                {link.value}
-              </div>
+              {link.value}
             </Link>
-          ))}
-        </div>
-        */}
-        <div className="hidden lg:flex lg:gap-x-4 md:flex md:gap-x-4">
-          {navLinks.map((link) => (
-            <Button
-              key={link.href}
-              variant="light"
-              size="sm"
-              onClick={() => router.push(link.href)}
-              className={`font-semibold  mx-2 cursor-pointer md:text-sm`}
-            >
-              <div
-                className={`${
-                  path == link.href
-                    ? "bg-white/10 px-2 py-2 flex items-center rounded-lg"
-                    : ""
-                }`}
-              >
-                {link.value}
-              </div>
-            </Button>
           ))}
         </div>
 
