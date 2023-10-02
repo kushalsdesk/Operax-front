@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Button, button } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
 interface ILink {
   href: string;
@@ -18,7 +18,6 @@ const navLinks: ILink[] = [
 ];
 
 const Navbar = () => {
-  const path = usePathname();
   const router = useRouter();
 
   const [scrolling, setScrolling] = useState<boolean>(false);
