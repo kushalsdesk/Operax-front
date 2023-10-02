@@ -16,9 +16,9 @@ const Game: React.FC<Props> = ({ game }) => {
             className="object-contain rounded-md "
             src={game.imageUrl}
             width={300}
-            height={300}
+            height={200}
             loading="lazy"
-            quality={80}
+            quality={70}
           />
         </div>
         <div className="py-4 items-start w-full">
