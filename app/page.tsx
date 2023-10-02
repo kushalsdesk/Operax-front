@@ -23,7 +23,7 @@ export default function Home() {
     };
 
     getGames();
-  }, [games]);
+  }, []);
 
   return (
     <>
