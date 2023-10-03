@@ -62,8 +62,8 @@ const Navbar = () => {
         displayName: user.displayName,
         photoURL: user.photoURL,
       };
-      //const apiUrl = "https://operax.cyclic.cloud/api/user/";
-      const apiUrl = "http://localhost:8080/api/user";
+      const apiUrl = "https://operax.cyclic.cloud/api/user/";
+      //const apiUrl = "http://localhost:8080/api/user";
 
       const response = await axios.post(apiUrl, requestObj);
       console.log(response.data);
