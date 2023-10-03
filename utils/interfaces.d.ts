@@ -12,3 +12,9 @@ export default interface IGame {
   seriesName: string;
   imageUrl: string;
 }
+
+export default interface IUser {
+  email: string | null;
+  displayName: string | null;
+  photoURL: string | null;
+}
