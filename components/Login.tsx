@@ -79,11 +79,12 @@ const Login: React.FC<userPropes> = ({ isLoggedIn }) => {
   };
 
   const handleSignOut = async () => {
+    router.push("/");
     await signOut(auth);
     localStorage.removeItem("LoggedIn");
     localStorage.removeItem("userImage");
+    setImage(undefined);
     window.location.reload();
-    router.push("/");
   };
   return (
     <>
