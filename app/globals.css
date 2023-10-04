@@ -12,7 +12,7 @@ body {
   font-family: "Mooli", sans-serif;
 }
 .background_tran {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(6, 6, 6, 0.968);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
