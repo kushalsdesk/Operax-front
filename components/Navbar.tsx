@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@nextui-org/react";
 import Login from "./Login";
+import Image from "next/image";
 
 interface ILink {
   href: string;
@@ -61,10 +62,12 @@ const Navbar = () => {
             className="flex flex-row items-center justify-between gap-1 "
           >
             <span className="sr-only ">Operax</span>
-            <img
+            <Image
               id="image"
-              className="h-[35px] w-[35px] z-10"
-              src="logo.png"
+              width={35}
+              height={35}
+              loading="lazy"
+              src="/logo.png"
               alt="logo_img"
             />
             <label
