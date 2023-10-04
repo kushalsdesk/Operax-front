@@ -45,6 +45,7 @@ const Login: React.FC<userPropes> = ({ isLoggedIn }) => {
       } else {
         localStorage.removeItem("LoggedIn");
         localStorage.removeItem("userImage");
+        router.push("/");
       }
     });
   };
@@ -79,12 +80,10 @@ const Login: React.FC<userPropes> = ({ isLoggedIn }) => {
   };
 
   const handleSignOut = async () => {
-    router.push("/");
     await signOut(auth);
     localStorage.removeItem("LoggedIn");
     localStorage.removeItem("userImage");
     setImage(undefined);
-    window.location.reload();
   };
   return (
     <>
@@ -114,7 +113,10 @@ const Login: React.FC<userPropes> = ({ isLoggedIn }) => {
                   radius="sm"
                   size="sm"
                   variant="light"
-                  onPress={() => handleSignOut()}
+                  onPress={() => {
+                    handleSignOut();
+                    window.location.reload();
+                  }}
                 >
                   Sign Out
                 </Button>
@@ -127,7 +129,9 @@ const Login: React.FC<userPropes> = ({ isLoggedIn }) => {
           className={`font-semibold leading-6`}
           variant="light"
           size="md"
-          onPress={() => handleSignIn()}
+          onPress={() => {
+            handleSignIn();
+          }}
         >
           Log in <span aria-hidden="true">&rarr;</span>
         </Button>
