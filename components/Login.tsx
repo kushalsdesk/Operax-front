@@ -82,8 +82,8 @@ const Login: React.FC<userPropes> = ({ isLoggedIn }) => {
     await signOut(auth);
     localStorage.removeItem("LoggedIn");
     localStorage.removeItem("userImage");
-    router.push("/");
     window.location.reload();
+    router.push("/");
   };
   return (
     <>
