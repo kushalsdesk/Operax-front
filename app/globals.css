@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  /*background-color: #09151f;*/
+  /*  background-color: whitesmoke;*/
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: "Mooli", sans-serif;
+}
+
+.background_tran {
+  background: rgba(6, 6, 6, 0.968);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
