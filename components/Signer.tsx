@@ -1,6 +1,5 @@
-"use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
   Avatar,
@@ -14,49 +13,64 @@ import {
 import { signIn, auth } from "@/services/firebase.service";
 import { signOut } from "firebase/auth";
 import axios from "redaxios";
-import { useUserStore } from "@/store/user.store";
+import useUserStore from "@/store/user.store";
 
-const { isLoggedIn } = useUserStore.getState();
 
-const handleSignIn = async () => {
-  await signIn();
-}
-export const Signer: React.FC = () => {
-
-  return (
-    <div
-      className={`lg:flex lg:flex-1 lg:justify-end md:flex cursor-pointer flex `}
-    >
-      {isLoggedIn ? <UserProfile /> : <LoginButton />}
-    </div>
-  )
-}
 export const LoginButton: React.FC = () => {
+  const { loginStatus } = useUserStore();
+
+  const handleSignIn = async () => {
+    try {
+      const currUser = await signIn(); // Replace with your actual sign-in logic
+      if (currUser) {
+        loginStatus({
+          firstName: currUser?.displayName?.split(' ')[0] || "",
+          avatarImg: currUser?.photoURL || "",
+          emailId: currUser?.email || "",
+        })
+      }
+    } catch (error) {
+      console.error("Error signing in:", error);
+      // Handle sign-in error gracefully (e.g., display an error message)
+    }
+  }
+
   return (
     <>
       <Button
         className={`font-semibold leading-6`}
         variant="light"
         size="md"
-        onPress={async () => {
-          await signIn();
+        onPress={(e) => {
+          handleSignIn()
         }}
       >
-        Log in <span aria-hidden="true">&rarr;</span>
+        Sign in <span aria-hidden="true">&rarr;</span>
       </Button>
     </>
   );
 };
 
+
 export const UserProfile: React.FC = () => {
-  const { user, loginStatus } = useUserStore();
   const router = useRouter();
+  const { user, isLoggedIn, logoutStatus } = useUserStore();
+
+  useEffect(() => {
+    return () => { };
+  }, [isLoggedIn]);
+
+  const handleSignOut = async () => {
+    await signOut(auth);
+    logoutStatus();
+  }
+
   return (
     <>
       <div className="flex items-center justify-center gap-4 ">
         <Dropdown backdrop="blur">
           <DropdownTrigger>
-            <Avatar as="button" radius="md" size="md" src={user?.photoUrl} />
+            <Avatar as="button" radius="md" size="md" src={user?.avatarImg} />
           </DropdownTrigger>
           <DropdownMenu>
             <DropdownItem key="library" color="primary">
@@ -66,7 +80,7 @@ export const UserProfile: React.FC = () => {
                 size="sm"
                 variant="light"
                 onPress={(e) => {
-                  router.push(`/collection/${user?.firstName}`);
+                  router.push(`/collection/${user?.emailId}`);
                 }}
               >
                 My Collection
@@ -78,18 +92,16 @@ export const UserProfile: React.FC = () => {
                 radius="sm"
                 size="sm"
                 variant="light"
-                onPress={(e) => handleSignIn()
-                }
+                onPress={(e) => handleSignOut()}
               >
                 Sign Out
               </Button>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
-      </div>
+      </div >
     </>
   );
 };
-
 
 

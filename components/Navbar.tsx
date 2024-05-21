@@ -4,9 +4,12 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@nextui-org/react";
-import Login from "./Login";
 import Image from "next/image";
-import { LoginButton, UserProfile, Signer } from "./Signin";
+import useUserStore from "@/store/user.store";
+import { UserProfile, LoginButton } from "./Signer";
+import { onAuthStateChanged } from "firebase/auth";
+import { signIn, auth } from "@/services/firebase.service";
+
 
 interface ILink {
   href: string;
@@ -23,7 +26,20 @@ const Navbar = () => {
   const router = useRouter();
   const [scrolling, setScrolling] = useState<boolean>(false);
 
+  const { isLoggedIn, loginStatus } = useUserStore();
+
   useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        loginStatus({
+          firstName: currentUser?.displayName?.split(' ')[0] || "",
+          avatarImg: currentUser?.photoURL || "",
+          emailId: currentUser?.email || "",
+        })
+      }
+
+    })
+
     const handleScroll = () => {
       if (window.scrollY > 0) {
         setScrolling(true);
@@ -32,11 +48,11 @@ const Navbar = () => {
       }
     };
     window.addEventListener("scroll", handleScroll);
-
     return () => {
+    unsubscribe();
       window.removeEventListener("scroll", handleScroll);
     };
-  });
+  }, [isLoggedIn]);
 
   return (
     <header
@@ -94,8 +110,12 @@ const Navbar = () => {
             </Button>
           ))}
         </div>
-
-        <Signer />
+        {/**This is the section for Signer*/}
+        <div
+          className={`lg:flex lg:flex-1 lg:justify-end md:flex cursor-pointer flex `}
+        >
+          {isLoggedIn ? <UserProfile /> : <LoginButton />}
+        </div>
         {/**Mobile navlinks */}
       </nav>
     </header>

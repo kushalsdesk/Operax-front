@@ -22,7 +22,8 @@ const useGamesStore = create<GameState & Actions>()((set) => ({
 
   fetchGames: async () => {
     try {
-      const apiUrl = "https://operax-back.onrender.com/api/games";
+      // const apiUrl = "https://operax-back.onrender.com/api/games";
+      const apiUrl = "http://localhost:8080/api/games";
       const response = await axios.get<IGame[]>(apiUrl);
       set({ games: response.data, loading: false });
     } catch (error) {

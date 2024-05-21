@@ -6,7 +6,7 @@ import axios from "redaxios";
 import { IGame } from "@/utils/interfaces";
 import useGamesStore from "@/store/game.store";
 
-const Games = () => {
+const Games: React.FC = () => {
   const { games, loading, fetchGames } = useGamesStore();
   useEffect(() => {
     if (!games) {
