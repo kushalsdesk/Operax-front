@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Avatar } from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@nextui-org/react";
@@ -25,6 +26,7 @@ const navLinks: ILink[] = [
 const Navbar = () => {
   const router = useRouter();
   const [scrolling, setScrolling] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState<boolean>(true);
 
   const { isLoggedIn, loginStatus } = useUserStore();
 
@@ -36,6 +38,9 @@ const Navbar = () => {
           avatarImg: currentUser?.photoURL || "",
           emailId: currentUser?.email || "",
         })
+        if (isLoggedIn) setLoading(false);
+      } else {
+        setLoading(false);
       }
 
     })
@@ -49,7 +54,7 @@ const Navbar = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => {
-    unsubscribe();
+      unsubscribe();
       window.removeEventListener("scroll", handleScroll);
     };
   }, [isLoggedIn]);
@@ -101,7 +106,7 @@ const Navbar = () => {
             <Button
               variant="light"
               size="sm"
-              onPress={() => router.push(link.href)}
+              onPress={(e) => router.push(link.href)}
               key={link.href}
               href={link.href}
               className={`font-semibold leading-6 mx-2 cursor-pointer md:text-sm `}
@@ -114,11 +119,24 @@ const Navbar = () => {
         <div
           className={`lg:flex lg:flex-1 lg:justify-end md:flex cursor-pointer flex `}
         >
-          {isLoggedIn ? <UserProfile /> : <LoginButton />}
+          {
+            isLoading ? (
+              <Avatar
+                showFallback
+                isBordered
+                radius="md"
+                size="md"
+                src="https://images.unsplash.com/broken"
+              /> // Use default Avatar
+            ) : isLoggedIn ? (
+              <UserProfile />
+            ) : (
+              <LoginButton />
+            )}
         </div>
         {/**Mobile navlinks */}
       </nav>
-    </header>
+    </header >
   );
 };
 

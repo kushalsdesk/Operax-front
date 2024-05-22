@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
   Avatar,
+  Badge,
   Button,
   Dropdown,
   DropdownTrigger,
@@ -37,16 +38,33 @@ export const LoginButton: React.FC = () => {
 
   return (
     <>
-      <Button
-        className={`font-semibold leading-6`}
-        variant="light"
-        size="md"
-        onPress={(e) => {
-          handleSignIn()
-        }}
-      >
-        Sign in <span aria-hidden="true">&rarr;</span>
-      </Button>
+      <Dropdown backdrop="blur">
+        <Badge content="X" color="danger" placement="bottom-right">
+          <DropdownTrigger>
+            <Avatar
+              showFallback
+              radius="md"
+              size="md"
+              isBordered
+              src='https://images.unsplash.com/broken'
+            />
+          </DropdownTrigger>
+        </Badge>
+        <DropdownMenu>
+          <DropdownItem color="success">
+            <Button
+              className={`w-full font-semibold leading-6`}
+              variant="light"
+              size="md"
+              onPress={(e) => {
+                handleSignIn()
+              }}
+            >
+              Sign in <span aria-hidden="true">&rarr;</span>
+            </Button>
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
     </>
   );
 };
@@ -69,9 +87,18 @@ export const UserProfile: React.FC = () => {
     <>
       <div className="flex items-center justify-center gap-4 ">
         <Dropdown backdrop="blur">
-          <DropdownTrigger>
-            <Avatar as="button" radius="md" size="md" src={user?.avatarImg} />
-          </DropdownTrigger>
+          <Badge content="✓" color="success" placement="bottom-right">
+            <DropdownTrigger>
+              <Avatar
+                as="button"
+                isBordered
+                color="success"
+                radius="md"
+                size="md"
+                src={user?.avatarImg}
+              />
+            </DropdownTrigger>
+          </Badge>
           <DropdownMenu>
             <DropdownItem key="library" color="primary">
               <Button
